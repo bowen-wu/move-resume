@@ -13,11 +13,18 @@ body{
     transition: all 0.2s;
     perspective:1000px;
 }
+#audioElement{
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #C62F2F;
+}
 #start{
     position: fixed;
     bottom: 20px;
     left: 50%;
-    transform: translateY(-50%);
+    transform: translateX(-50%);
     border: none;
     font-size: 20px;
     font-weight: 600;

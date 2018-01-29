@@ -2,6 +2,8 @@
     let start = document.getElementById('start')
     let code = document.getElementById('code')
     let innerStyle = document.getElementById('innerStyle')
+    let audio = document.getElementById('audioElement')
+    audio.volume = 0.2
     let content1 = `/*
 * 面试官您好！我是吴博文。
 * 接下来我将以代码的形式向您介绍我自己
@@ -146,6 +148,7 @@ let content5 = `
 
     start.addEventListener('click', (e) => {
         e.currentTarget.classList.add('active')
+        audio.play()
         writeCode(content1, () => {
             createPaper(() => {
                 writeCode(content2, () => {
