@@ -3,6 +3,12 @@
 *{
     box-sizing: border-box;
 }
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
 html{
     height: 100vh;
 }
@@ -12,6 +18,33 @@ body{
     background-size: cover;
     transition: all 0.2s;
     perspective:1000px;
+}
+section{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    flex-direction: column;
+    display: none;
+    z-index: 1;
+}
+section.active{
+    display: flex;
+}
+section > button{
+    margin: 10px;
+    padding: 8px 10px;
+    border: none;
+    font-size: 16px;
+    background-color: #EAE8E9;
+    border-radius: 4px;
+    transition: all 0.5s;
+}
+section > button:focus{
+    outline: none;
+}
+section > button.active{
+    color: #C62F2F;
 }
 #audioElement{
     position: fixed;
@@ -34,6 +67,7 @@ body{
     background-color: #2C2F28;
     color: #fff;
     transition: all 0.2s;
+    cursor: pointer;
 }
 #start:focus{
     outline: none;
@@ -41,8 +75,20 @@ body{
 #start.active{
     display: none;
 }
-
-
+#suspend{
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px;
+    width: 50px;
+    height: 50px;
+    display: none;
+    transition: none;
+}
+#suspend.active{
+    display: block;
+}
 .codeWrapper{
     height: 100vh;
     padding: 16px;

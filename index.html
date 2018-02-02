@@ -4,25 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>move-resume</title>
+    <title>我的个人介绍</title>
     <link rel="stylesheet" href="./css/prism.css">
     <link rel="stylesheet" href="./css/style.css">
+    <script src="//at.alicdn.com/t/font_562201_5sk6a3kp1puv7vi.js"></script>
     <style id="innerStyle"></style>
-
 </head>
 <body>
+    <section>
+        <button data-speed="slow">慢速</button>
+        <button data-speed="normal" class="active">中速</button>
+        <button data-speed="fast">快速</button>
+    </section>
     <audio id="audioElement" src="./Kiss-the-Rain-cut.mp3">
         Your browser does not support the <code>audio</code> element.
     </audio>
     <div class="buttons">
         <button id="start">开始</button>
+        <svg id="suspend" class="icon">
+            <use xlink:href="#icon-suspend01"></use>
+        </svg>
     </div>
     <div class="codeWrapper">
         <pre id="code" class="code"></pre>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.12/marked.min.js"></script>
+    <script src="./js/marked.min.js"></script>
     <script src="./js/prism.js"></script>
+    <script src="./js/jquery-3.2.1.min.js"></script>
     <script src="./js/main.js"></script>
-    <script src="./js/music.js"></script>
 </body>
 </html>

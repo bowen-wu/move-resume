@@ -3,7 +3,31 @@
     let code = document.getElementById('code')
     let innerStyle = document.getElementById('innerStyle')
     let audio = document.getElementById('audioElement')
+    let suspend = document.getElementById('suspend')
+    let section = document.querySelector('section')
     audio.volume = 0.2
+    let codeDuration = 50
+    let markDownDuration = 30
+    $('section').on('click', 'button', (event) => {
+        $(event.currentTarget).addClass('active').siblings().removeClass('active')
+        let speed = $(event.currentTarget).attr('data-speed')
+        switch (speed){
+            case 'slow': 
+            codeDuration = 100
+            markDownDuration = 50
+            break;
+            case 'normal': 
+            codeDuration = 50
+            markDownDuration = 30
+            break;
+            case 'fast': 
+            codeDuration = 30
+            markDownDuration = 10
+            break;
+        }
+    })
+
+
     let content1 = `/*
 * 面试官您好！我是吴博文。
 * 接下来我将以代码的形式向您介绍我自己
@@ -100,6 +124,7 @@ let content5 = `
 /* 这就是我个人的大致情况，谢谢观看 */
 `
 
+
     function writeCode(content,cb) {
         let id, n = 0
         id = setTimeout(function run() {
@@ -109,11 +134,11 @@ let content5 = `
             innerStyle.innerHTML += content.slice(n - 1, n)
             code.scrollTop = code.scrollHeight
             if (n < content.length) {
-                id = setTimeout(run, 50)
+                id = setTimeout(run, codeDuration)
             } else {
                 cb && cb.call()
             }
-        }, 50)
+        }, codeDuration)
     }
     function createPaper(cb){
         let paperWrapper = document.createElement('div')
@@ -133,11 +158,11 @@ let content5 = `
             paper.textContent += writeText
             paper.scrollTop = paper.scrollHeight
             if (n < content.length) {
-                id = setTimeout(run, 30)
+                id = setTimeout(run, markDownDuration)
             }else{
                 cb.call()
             }
-        }, 30)
+        }, markDownDuration)
     }
 
     function markdownToHtml(content, cb) {
@@ -145,9 +170,20 @@ let content5 = `
         paper.scrollTop = 0
         cb.call()
     }
-
+    let flag = true
+    suspend.addEventListener('click', () => {
+        if(flag){
+            audio.pause()
+            flag = false
+        }else{
+            audio.play()
+            flag = true
+        }
+    })
     start.addEventListener('click', (e) => {
         e.currentTarget.classList.add('active')
+        suspend.classList.add('active')
+        section.classList.add('active')
         audio.play()
         writeCode(content1, () => {
             createPaper(() => {
@@ -158,6 +194,8 @@ let content5 = `
                                 writeCode(content5, () => {
                                     code.classList.add('active')
                                     paperWrapper.classList.add('active')
+                                    suspend.classList.remove('active')
+                                    section.classList.remove('active')
                                 })
                             })
                         })
